@@ -1,0 +1,93 @@
+﻿@{
+        ViewData["Title"] = "Home Page";
+    }
+
+    <div class="container mt-3">
+        <div class="login-area">
+            <input type="text" class="form-control" />
+            <button class="btn btn-success mt-2">Login</button>
+        </div>
+        <div class="chat-area d-none">
+            <div class="mt-3">Username: <b><span class="text-success username"></span></b></div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="messages-list-area">
+                        <ul class="list-group message-list">
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="send-messages-area">
+                        <label>Message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <button class="btn btn-success mt-2">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/microsoft/signalr/signalr.js"></script>
+    <script>
+
+        const connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
+
+        connection.start()
+            .then(() => { })
+            .catch((err) => {
+        });
+
+        let loginBtn = document.querySelector(".login-area button");
+
+        let username = "";
+
+        loginBtn.addEventListener("click", function () {
+            if (this.previousElementSibling.value === "") {
+                alert("Don't be empty");
+                return;
+            }
+
+            username = this.previousElementSibling.value;
+
+            this.previousElementSibling.value = "";
+
+            document.querySelector(".login-area").classList.add("d-none");
+
+            document.querySelector(".chat-area").classList.remove("d-none");
+
+            document.querySelector(".chat-area .username").innerHTML = username;
+
+        })
+
+
+        connection.on("ReceiveMessage", function (user, message) {
+
+            let result = user + ": " + message;
+
+            debugger
+
+            let li = `<li class="list-group-item">${result}</li>`;
+
+            document.querySelector(".message-list").innerHTML += li;
+
+        });
+
+        document.querySelector(".send-messages-area button").addEventListener("click",function(){
+            if (this.previousElementSibling.value === "") {
+                alert("Don't be empty");
+                return;
+            }
+
+            let message = this.previousElementSibling.value;
+
+            debugger
+            connection.invoke("SendMessage", username, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            this.previousElementSibling.value = "";
+
+        })
+
+    </script>
+

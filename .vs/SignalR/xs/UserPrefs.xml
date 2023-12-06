@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{5AFCB170-85EE-43E8-82EB-291034E38EFC}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.SignalR PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SignalR/Views/Home/Index.cshtml">
+    <Files>
+      <File FileName="SignalR/Hubs/ChatHub.cs" />
+      <File FileName="SignalR/Properties/launchSettings.json" Line="14" Column="49" />
+      <File FileName="SignalR/Views/Home/Index.cshtml" Line="16" Column="30" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SignalR">
+            <Node name="SignalR">
+              <Node name="Hubs" expanded="True" />
+              <Node name="Views">
+                <Node name="Home">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
